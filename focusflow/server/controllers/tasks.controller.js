@@ -1,3 +1,4 @@
+import {validationResult} from 'express-validator'
 import {v4 as uuidv4} from 'uuid'
 import {getDB} from '../config/db.js'
 
