@@ -5,6 +5,7 @@ import FocusMode from '../../components/FocusMode'
 import ProcrastinationModal from '../../components/ProcrastinationModal'
 import Analytics from '../../components/Analytics'
 import StartScheduleModal from '../../components/StartScheduleModal'
+import AddTaskModal from '../../components/AddTaskModal'
 import API from '../../services/taskApi'
 import {AuthContext} from '../../context/AuthContext'
 
@@ -111,6 +112,7 @@ class TaskBoard extends Component {
     focusStreak: 0,
     loading: false,
     showScheduleModal: false,
+    showAddTaskModal: false,
   }
 
   componentDidMount() {
@@ -250,6 +252,7 @@ class TaskBoard extends Component {
     const {logout} = this.context
     const {tasks, focusTask, showProcrastinationModal} = this.state
     const {focusStreak, loading, showScheduleModal} = this.state
+    const {showAddTaskModal} = this.state
     return (
       <Container>
         <Header>
@@ -259,6 +262,16 @@ class TaskBoard extends Component {
           >
             Start Schedule
           </PrimaryButton>
+          {showAddTaskModal && (
+            <AddTaskModal
+              onClose={() => this.setState({showAddTaskModal: false})}
+              onCreate={async taskData => {
+                await this.createTask(taskData)
+                await this.fetchTasks()
+                this.setState({showAddTaskModal: false})
+              }}
+            />
+          )}
           <TitleSection>
             <Title>FocusFlow 🔥</Title>
             <StreakBadge>Focus Streak: {focusStreak}</StreakBadge>
@@ -267,13 +280,7 @@ class TaskBoard extends Component {
           <ButtonGroup>
             <PrimaryButton
               type="button"
-              onClick={() =>
-                this.createTask({
-                  title: 'New Task',
-                  description: '',
-                  priority: 'MEDIUM',
-                })
-              }
+              onClick={() => this.setState({showAddTaskModal: true})}
             >
               + Add Task
             </PrimaryButton>
