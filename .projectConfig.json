@@ -1,0 +1,12 @@
+{
+  "ignoredFilesOrFolders": [],
+  "openFiles": [
+    "class-component-and-state-2/focusflow/server/config/db.js",
+    "class-component-and-state-2/focusflow/server/controllers/tasks.controller.js",
+    "class-component-and-state-2/focusflow/server/routes/tasks.routes.js",
+    "class-component-and-state-2/focusflow/src/components/FocusMode/index.js",
+    "class-component-and-state-2/focusflow/src/classComponents/TaskBoard/index.js",
+    "class-component-and-state-2/focusflow/src/components/TaskCard/index.js"
+  ],
+  "fileToBeOpened": "class-component-and-state-2/focusflow/src/components/Analytics/index.js"
+}
